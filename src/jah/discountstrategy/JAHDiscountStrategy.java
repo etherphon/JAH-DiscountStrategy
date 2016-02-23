@@ -16,12 +16,18 @@ public class JAHDiscountStrategy {
      */
     public static void main(String[] args) {
         
-        // kludge:  do configuration here
+        // add lineitem, add item to sale
+        // lineitem array in receipt
+        // add product to lineitem
         
+        
+        // kludge:  do configuration here
+        DatabaseStrategy db = new FakeDatabase();
         
         
         // start talking to objects
-        
+        Register register = new Register();
+        register.startNewSale("100", db);
         
         
     }
