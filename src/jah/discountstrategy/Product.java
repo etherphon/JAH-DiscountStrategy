@@ -59,4 +59,11 @@ public class Product {
         this.discount = discount;
     }
     
+    public final Double getPriceWithDiscount(int qty) {
+        
+        Double price = (unitCost * qty) - discount.getDiscountAmount(qty, unitCost);
+        return price;
+        
+    }
+    
 }

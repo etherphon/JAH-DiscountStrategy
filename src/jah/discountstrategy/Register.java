@@ -23,11 +23,12 @@ public class Register {
     }
     
     public final void endSale() {
-        
+        // add code here, output receipt
+        // need output objects
     }
     
     public final void addItemToSale(String prodId, int qty) {
-        
+        receipt.addItemToReceipt(prodId, qty);
     }
 
     public final Receipt getReceipt() {

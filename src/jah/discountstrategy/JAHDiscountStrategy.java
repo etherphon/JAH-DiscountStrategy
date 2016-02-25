@@ -29,6 +29,25 @@ public class JAHDiscountStrategy {
         Register register = new Register();
         register.startNewSale("100", db);
         
+        // test code
+        Customer customer = register.getReceipt().getCustomer();
+        System.out.println("Customer " + customer.getCustomerName() +
+                " found and added to receipt");
+        
+        // add item to sale
+        register.addItemToSale("11", 2);
+        register.addItemToSale("22", 1);
+        register.addItemToSale("33", 3);
+        
+        // test added items
+        LineItem[] items = register.getReceipt().getLineItems();
+        for (LineItem item : items) {
+            System.out.println(item.getLiProduct().getProductName());
+            System.out.println(item.getSubtotal());
+            System.out.println(item.getLineDiscount());
+            System.out.println(item.getLineItemTotal());
+        }
+        
         
     }
     

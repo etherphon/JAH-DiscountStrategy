@@ -18,10 +18,16 @@ public class LineItem {
 
     public LineItem(DatabaseStrategy liDb, String prodId, int qty) {
         setLiDb(liDb);
-        liProduct = liDb.findProductById(prodId);
+        setLiProduct(liDb.findProductById(prodId));
         setQty(qty);
     }
-
+    
+    public String getLineItemData() {
+        String data = "";
+        
+        return data;
+    }
+    
     public final DatabaseStrategy getLiDb() {
         return liDb;
     }
@@ -49,6 +55,20 @@ public class LineItem {
         this.qty = qty;
     }
     
+    public final Double getSubtotal() {
+        
+        return liProduct.getUnitCost() * qty;
+    }
     
+    public final Double getLineDiscount() {
+        
+        return liProduct.getDiscount().getDiscountAmount(qty, liProduct.getUnitCost());
+    }
+    
+    
+    public final Double getLineItemTotal() {
+        
+        return liProduct.getPriceWithDiscount(qty);
+    }
     
 }
