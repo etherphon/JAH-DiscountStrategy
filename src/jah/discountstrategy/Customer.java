@@ -24,6 +24,10 @@ public class Customer {
     }
 
     public final void setCustomerId(String customerId) {
+        /**
+         * Caution: customer id parameter is not validated
+         */
+        
         // needs validation
         this.customerId = customerId;
     }
@@ -33,6 +37,9 @@ public class Customer {
     }
 
     public final void setCustomerName(String customerName) {
+        /**
+         * Caution: customerName parameter is not validated
+         */
         // needs validation
         this.customerName = customerName;
     }

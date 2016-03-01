@@ -30,6 +30,9 @@ public class FakeDatabase implements DatabaseStrategy {
     @Override
     public final Product findProductById(String prodId) {
         // needs validation
+        /**
+         * Caution: prodId parameter is not validated
+         */
         Product product = null;
         
         for (Product p : products) {
@@ -44,6 +47,9 @@ public class FakeDatabase implements DatabaseStrategy {
     
     @Override
     public final Customer findCustomerById(String custId) {
+        /**
+         * Caution: custId parameter is not validated
+         */
         // needs validation
         Customer customer = null;
         

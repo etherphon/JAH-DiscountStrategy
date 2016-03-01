@@ -24,11 +24,17 @@ public class KohlsStore implements StoreStrategy {
     }
 
     public void setStoreName(String storeName) {
+        /**
+         * Caution: storeName parameter is not validated
+         */
         // needs validation
         this.storeName = storeName;
     }
 
     public void setStoreInfo(String storeInfo) {
+        /**
+         * Caution: storeInfo parameter is not validated
+         */
         // needs validation
         this.storeInfo = storeInfo;
     }

@@ -16,10 +16,9 @@ public class JAHDiscountStrategy {
      */
     public static void main(String[] args) {
         
-        // add lineitem, add item to sale
-        // lineitem array in receipt
-        // add product to lineitem
-        
+        // add receipt formats
+        // you can put constants in the interface
+        // add javadoc comments
         
         // kludge:  do configuration here
         DatabaseStrategy db = new FakeDatabase();
@@ -29,13 +28,13 @@ public class JAHDiscountStrategy {
         
         
         // start talking to objects
-        Register register = new Register();
+        Register register = new Register("Kohls Department Store");
         register.startNewSale("100", db, kohls);
         
         // test code
         Customer customer = register.getReceipt().getCustomer();
-        System.out.println("Customer " + customer.getCustomerName() +
-                " found and added to receipt");
+        //System.out.println("Customer " + customer.getCustomerName() +
+        //                " found and added to receipt");
         
         // add item to sale
         register.addItemToSale("11", 2);
@@ -52,6 +51,10 @@ public class JAHDiscountStrategy {
 //        }
         
         //System.out.println(register.getReceipt().getReceiptItems());
+        /**
+         * Testing output of receipt from register with paper (console),
+         * and GUI output strategies
+         */
         register.outputReceipt(paper);
         register.outputReceipt(gui);
         

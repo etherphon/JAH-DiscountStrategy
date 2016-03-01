@@ -15,6 +15,11 @@ public class GUIReceiptOutput implements OutputStrategy {
  
     @Override
     public final void outputReceipt(Receipt r) {
+        /**
+         * Caution: r parameter is not validated
+         * Receipt object is passed, method called to return string
+         * to output with joptionpane
+         */
         // needs validation
         JOptionPane.showMessageDialog(null, r.getReceiptItems());
     }

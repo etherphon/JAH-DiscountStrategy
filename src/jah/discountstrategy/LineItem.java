@@ -14,7 +14,7 @@ public class LineItem {
     private DatabaseStrategy liDb;
     private Product liProduct;
     private int qty;
-    String prodId;
+    private String prodId;
 
     public LineItem(DatabaseStrategy liDb, String prodId, int qty) {
         setLiDb(liDb);
@@ -33,6 +33,9 @@ public class LineItem {
     }
 
     public final void setLiDb(DatabaseStrategy liDb) {
+        /**
+         * Caution: liDb parameter is not validated
+         */
         // needs validation
         this.liDb = liDb;
     }
@@ -42,6 +45,9 @@ public class LineItem {
     }
 
     public final void setLiProduct(Product liProduct) {
+        /**
+         * Caution: liProduct parameter is not validated
+         */
         // needs validation
         this.liProduct = liProduct;
     }

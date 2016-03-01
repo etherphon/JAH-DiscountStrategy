@@ -19,6 +19,9 @@ public class FlatAmountDiscount implements DiscountStrategy {
      
     @Override
     public final double getDiscountAmount(int qty, double unitCost) {
+        /**
+         * Caution: qty and unitCost parameters are not validated
+         */
         // needs validation
         return discountRate;
     }
@@ -28,6 +31,9 @@ public class FlatAmountDiscount implements DiscountStrategy {
     }
 
     public final void setDiscountRate(double discountRate) {
+        /**
+         * Caution: discountRate parameter is not validated
+         */
         // needs validation
         this.discountRate = discountRate;
     }

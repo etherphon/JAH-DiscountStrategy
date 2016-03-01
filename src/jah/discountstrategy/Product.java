@@ -60,7 +60,7 @@ public class Product {
     }
     
     public final Double getPriceWithDiscount(int qty) {
-        
+        // needs validation
         Double price = (unitCost * qty) - discount.getDiscountAmount(qty, unitCost);
         return price;
         
