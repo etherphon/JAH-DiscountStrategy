@@ -23,11 +23,14 @@ public class JAHDiscountStrategy {
         
         // kludge:  do configuration here
         DatabaseStrategy db = new FakeDatabase();
+        OutputStrategy paper = new PaperReceiptOutput();
+        OutputStrategy gui = new GUIReceiptOutput();
+        StoreStrategy kohls = new KohlsStore();
         
         
         // start talking to objects
         Register register = new Register();
-        register.startNewSale("100", db);
+        register.startNewSale("100", db, kohls);
         
         // test code
         Customer customer = register.getReceipt().getCustomer();
@@ -40,13 +43,17 @@ public class JAHDiscountStrategy {
         register.addItemToSale("33", 3);
         
         // test added items
-        LineItem[] items = register.getReceipt().getLineItems();
-        for (LineItem item : items) {
-            System.out.println(item.getLiProduct().getProductName());
-            System.out.println(item.getSubtotal());
-            System.out.println(item.getLineDiscount());
-            System.out.println(item.getLineItemTotal());
-        }
+//        LineItem[] items = register.getReceipt().getLineItems();
+//        for (LineItem item : items) {
+//            System.out.println(item.getLiProduct().getProductName());
+//            System.out.println(item.getSubtotal());
+//            System.out.println(item.getLineDiscount());
+//            System.out.println(item.getLineItemTotal());
+//        }
+        
+        //System.out.println(register.getReceipt().getReceiptItems());
+        register.outputReceipt(paper);
+        register.outputReceipt(gui);
         
         
     }

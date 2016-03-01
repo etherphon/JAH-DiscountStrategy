@@ -5,6 +5,8 @@
  */
 package jah.discountstrategy;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author jhedding
@@ -14,13 +16,17 @@ public class Receipt {
     private DatabaseStrategy db;
     private Customer customer;
     private LineItem[] lineItems;
+    private StoreStrategy store;
+    
+    
 
     
-    public Receipt(String custId, DatabaseStrategy db) {
+    public Receipt(String custId, DatabaseStrategy db, StoreStrategy st) {
         // needs validation
        setDb(db);
        setCustomer(db.findCustomerById(custId));
        lineItems = new LineItem[0];
+       store = st;
     }
     
     public final void addItemToReceipt(String prodId, int qty) {
@@ -66,5 +72,28 @@ public class Receipt {
         this.lineItems = lineItems;
     }
    
+   public final String getReceiptItems() {
+       String receipt = store.getStoreName() + "\n" + store.getStoreInfo() + "\n";
+       
+       receipt += "Item No.\tItem Name\t\tQuantity\tPrice\tDiscount\tSubtotal\n"
+                      + "--------\t---------\t\t--------\t-----\t--------\t--------\n";
+       double receiptTotal = 0;
+       DecimalFormat df = new DecimalFormat("$###,###.##");
+       
+       for (LineItem li : lineItems) {
+           receipt += li.getLiProduct().getProductId() + "\t\t";
+           receipt += li.getLiProduct().getProductName() + "\t\t\t";
+           receipt += li.getQty() + "\t";
+           receipt += df.format(li.getLiProduct().getUnitCost()) + "\t";
+           receipt += df.format(li.getLineDiscount()) + "\t\t";
+           receiptTotal += li.getLineItemTotal();
+           receipt += df.format(li.getLineItemTotal()) + "\n";
+       }
+       
+       receipt += "--------\t---------\t\t--------\t-----\t--------\t--------\n";
+       receipt += "\t\t\t\t\t\t\t\tTotal: " + "\t\t" + df.format(receiptTotal);
+       
+       return receipt;
+   }
     
 }

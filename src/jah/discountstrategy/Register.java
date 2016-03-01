@@ -13,13 +13,13 @@ public class Register {
     
     private Receipt receipt;
     // change to store object
-    private String storeName;
+    private StoreStrategy store;
     private DatabaseStrategy db;
+    private OutputStrategy op;
     
-    public final void startNewSale(String custId, DatabaseStrategy db) {
+    public final void startNewSale(String custId, DatabaseStrategy db, StoreStrategy st) {
         // needs validation
-        receipt = new Receipt(custId, db);
-        
+        receipt = new Receipt(custId, db, st);  
     }
     
     public final void endSale() {
@@ -40,13 +40,18 @@ public class Register {
         this.receipt = receipt;
     }
 
-    public final String getStoreName() {
-        return storeName;
+    public StoreStrategy getStore() {
+        return store;
     }
 
-    public final void setStoreName(String storeName) {
+    public void setStore(StoreStrategy store) {
         // needs validation
-        this.storeName = storeName;
+        this.store = store;
+    }
+
+    
+    public final void outputReceipt(OutputStrategy op) {
+        op.outputReceipt(receipt);
     }
     
     
