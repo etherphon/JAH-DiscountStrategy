@@ -27,6 +27,11 @@ public class FakeDatabase implements DatabaseStrategy {
     
     }
     
+    /*
+    *  Method finds product by ID in the fake database, uses same validation method
+    *  as exists in the Product class until a Validator plugin can be written.
+    *  References are made to static values written in the Product class.
+    */
     @Override
     public final Product findProductById(String prodId) {
         // needs validation
@@ -44,21 +49,26 @@ public class FakeDatabase implements DatabaseStrategy {
         return product;
     }
     
-    
+    /*  
+    *  Method finds customer by ID in the fake database, name valudation is done in the same
+    *  way as the Customer class, method refernces static final values in the customer class
+    *  for minimum and maximum ID lengths.
+    */
     @Override
-    public final Customer findCustomerById(String custId) {
-        /**
-         * Caution: custId parameter is not validated
-         */
-        // needs validation
-        Customer customer = null;
+    public final Customer findCustomerById(String custId) throws IllegalArgumentException {
+        
+        Customer cf = null;
+        
+        if (custId == null || custId.isEmpty() || custId.length() < Customer.CID_MIN || custId.length() > Customer.CID_MAX) {
+            throw new CustomerIdException();
+        }
         
         for (Customer c : customers) {
             if (c.getCustomerId().equals(custId)) {
-                customer = c;
+                cf = c;
                 break;
             }
         }
-        return customer;
+        return cf;
     }
 }
